@@ -1,0 +1,19 @@
+<% 
+    const pageProps = {
+        title: "MobiStore",
+        metaData: [
+            {
+                name: "description",
+                content: "Ecommerce website for selling mobiles, tablets and laptops"
+            }
+        ]
+    }
+%> 
+<%-include('./layout/head.ejs', {pageProps}) %>
+
+<div class="app">
+    <%-include('./components/nav.ejs', {activePage: "home"}) %>
+    <%-include('./sections/header.ejs') %>
+</div>
+
+<%-include('./layout/footer.ejs') %>

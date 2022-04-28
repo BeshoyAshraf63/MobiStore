@@ -1,0 +1,53 @@
+<% 
+    const menuItems = [
+        {
+            name: "home",
+            dispName: "Home",
+            href: "#home"
+        },
+        {
+            name: "products",
+            dispName: "Products",
+            href: "#products"
+        },
+        {
+            name: "testimonials",
+            dispName: "Testimonials",
+            href: "#testimonials"
+        },
+        {
+            name: "contact",
+            dispName: "Contact Us",
+            href: "#contact"
+        },
+    ]
+    
+%> 
+<nav class="navbar" id="navbar">
+    <div class="container d-flex align-items-center">
+        <a href="index.html" class="logo">
+            <%-include('../svgs/logo.ejs') %>
+        </a>
+        <ul class="navbar__menu">
+            <% menuItems.forEach(item => { %>
+                <li class="navbar__item">
+                    <a href="<%= item.href %>" class="navbar__link <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
+                </li>
+            <% }) %>
+        </ul>
+        <div class="navbar__btns">
+            <a href="#profile-menu">
+                <%-include('../svgs/profile.ejs') %>
+            </a>
+            <a href="#cart-menu">
+                <%-include('../svgs/cart.ejs') %>
+                <span class="navbar__cart-number">0</span>
+            </a>
+            <a href="#mobile-menu" class="mobile-menu-trigger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+        </div>
+    </div>
+</nav>

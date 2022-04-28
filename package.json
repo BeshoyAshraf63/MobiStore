@@ -1,0 +1,63 @@
+{
+  "name": "mobistore",
+  "version": "1.0.0",
+  "description": "MobiStore",
+  "main": "index.js",
+  "scripts": {
+    "lint:js": "eslint . --ext .js --ignore-pattern node_modules/",
+    "lint:js:fix": "eslint . --ext .js --ignore-pattern node_modules/ --fix",
+    "gulp:dev": "cross-env NODE_ENV=development gulp dev",
+    "gulp:prod": "cross-env NODE_ENV=production gulp prod"
+  },
+  "keywords": [
+    "gulp"
+  ],
+  "author": "Software Team Project",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^8.2.3",
+    "browser-sync": "^2.27.7",
+    "cross-env": "^7.0.3",
+    "del": "^6.0.0",
+    "eslint": "^8.10.0",
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-ejs": "^5.1.0",
+    "gulp-ejs-monster": "^3.2.3",
+    "gulp-filter": "^7.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-if": "^3.0.0",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-inject": "^5.0.5",
+    "gulp-notify": "^4.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-pretty-html": "^2.0.10",
+    "gulp-purgecss": "^4.1.3",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulplog": "^1.0.0",
+    "postcss": "^8.4.7",
+    "sass": "^1.49.9",
+    "terser-webpack-plugin": "^5.3.1",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^5.69.1",
+    "webpack-stream": "^7.0.0"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "bootstrap": "^5.1.3",
+    "smooth-scroll": "^16.1.3",
+    "swiper": "^8.1.4"
+  }
+}

@@ -1,0 +1,44 @@
+a,
+.btn {
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: $font-weight-normal;
+  display: inline-block;
+  @include media-lg {
+    font-size: 26px;
+  }
+  @include media-xl {
+    font-size: 36px;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: $font-weight-bold;
+  @include media-sm {
+    font-size: 35px;
+  }
+  @include media-lg {
+    font-size: 50px;
+  }
+  @include media-xl {
+    font-size: 65px;
+  }
+}
+
+p {
+  line-height: 1.5;
+  font-size: 18px;
+  font-weight: $font-weight-light;
+  @include media-lg {
+    font-size: 25px;
+  }
+  @include media-xl {
+    font-size: 30px;
+  }
+}

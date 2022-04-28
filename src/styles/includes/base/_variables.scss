@@ -1,0 +1,58 @@
+$white: #ffffff;
+$gray-100: #3d3d3d;
+$black: #000000;
+
+$grays: (
+  "100": $gray-100,
+) !default;
+
+// $beige: #e2dcce;
+// $green: #355142;
+// $yellow: #9da43a;
+// $indigo: #1b8087;
+// $purple: #39237e;
+// $red: #e65542;
+// $blue: #3f659c;
+// $brown: #ae8758;
+
+// $colors: (
+//   "beige": $beige,
+//   "green": $green,
+//   "yellow": $yellow,
+//   "indigo": $indigo,
+//   "purple": $purple,
+//   "red": $red,
+//   "blue": $blue,
+//   "brown": $brown,
+// ) !default;
+
+$primary: #faa434;
+
+$theme-colors: (
+  "primary": $primary,
+);
+
+$body-bg: $white;
+$body-color: $gray-100;
+$text-dark: $gray-100;
+
+// fonts
+$font-family-sans-serif: "Poppins", sans-serif;
+$default-font: $font-family-sans-serif;
+
+$font-weight-light: 400;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+//spaces
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 2.5,
+  6: $spacer * 3,
+  7: $spacer * 6.25,
+) !default;

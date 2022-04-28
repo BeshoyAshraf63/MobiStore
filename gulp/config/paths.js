@@ -1,0 +1,45 @@
+module.exports = {
+  src: "src/**/*",
+  dev: "dev",
+  dist: "dist",
+  styles: {
+    src: ["src/styles/vendor.scss", "src/styles/main.scss"],
+    srcWatch: "src/styles/**/*.{scss,sass}",
+    dev: "dev/css/",
+    dist: "dist/css/",
+    injectDevCss: ["dev/css/vendor.css", "dev/css/main.css"],
+    injectDistCss: "dist/css/*.min.css",
+    prodOut: "bundle.min.css",
+  },
+  scripts: {
+    src: ["src/scripts/vendor.js", "src/scripts/main.js"],
+    srcWatch: "src/scripts/**/*.js",
+    dev: "dev/js/",
+    dist: "dist/js/",
+    injectDevJs: ["dev/js/vendor.js", "dev/js/main.js"],
+    injectDistJs: "dist/js/*.min.js",
+    prodOut: "bundle.min.js",
+  },
+  views: {
+    src: "src/views/*.ejs",
+    srcWatch: "src/views/**/*.ejs",
+    dev: "dev/",
+    dist: "dist/",
+  },
+  public: {
+    src: "public/**/*",
+    dev: "dev/",
+    dist: "dist/",
+  },
+  assets: {
+    src: ["src/assets/**/*", "!src/assets/{imgs,imgs/**}"],
+    dev: "dev/assets/",
+    dist: "dist/assets/",
+  },
+  imgs: {
+    src: "src/assets/imgs/**/*.{png,jpg,svg,webp,gif}",
+    dev: "dev/assets/imgs/",
+    dist: "dist/assets/imgs/",
+    imgsFolder: "imgs",
+  },
+};

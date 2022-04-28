@@ -1,0 +1,15 @@
+body {
+  font-style: Normal;
+  font-weight: $font-weight-normal;
+  min-width: 320px;
+}
+
+.app {
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.swiper-container {
+  overflow: hidden;
+  position: relative;
+}

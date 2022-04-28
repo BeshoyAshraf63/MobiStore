@@ -1,0 +1,15 @@
+/* purgecss start ignore */
+
+// base
+@import "./includes/base/variables";
+@import "./includes/base/mixins";
+@import "./includes/base/general";
+@import "./includes/base/typography";
+// @import "./includes/base/section";
+
+// components
+@import "./includes/components/header";
+@import "./includes/components/nav";
+@import "./includes/components/btns";
+
+/* purgecss end ignore */
