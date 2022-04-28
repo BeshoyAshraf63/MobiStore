@@ -1,7 +1,7 @@
 const AOS = require("aos");
-const { Nav } = require("./components/Nav");
-const { Header } = require("./components/Header");
-const { HeaderSwiper } = require("./components/HeaderSwiper");
+const { Nav } = require("./components/nav");
+const { Header } = require("./components/header");
+const { HeaderSwiper } = require("./components/headerSwiper");
 
 document.addEventListener("DOMContentLoaded", function () {
   new Nav();
