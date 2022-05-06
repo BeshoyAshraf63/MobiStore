@@ -5,11 +5,13 @@
 @import "./includes/base/mixins";
 @import "./includes/base/general";
 @import "./includes/base/typography";
-// @import "./includes/base/section";
+@import "./includes/base/forms";
 
 // components
 @import "./includes/components/header";
 @import "./includes/components/nav";
 @import "./includes/components/btns";
+@import "./includes/components/product";
+@import "./includes/components/testimonials";
 
 /* purgecss end ignore */

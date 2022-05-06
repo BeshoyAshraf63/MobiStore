@@ -13,3 +13,69 @@ body {
   overflow: hidden;
   position: relative;
 }
+
+section {
+  margin: 50px 0;
+  @include media-lg {
+    margin: 100px 0;
+  }
+}
+
+.section-heading {
+  text-align: center;
+  margin: 0 auto 30px;
+  text-transform: uppercase;
+  &::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 80px;
+    border-radius: 20px;
+    margin: 10px auto;
+    background-color: $text-dark;
+    @include media-sm {
+      width: 100px;
+    }
+    @include media-lg {
+      height: 4px;
+      width: 120px;
+    }
+    @include media-xl {
+      width: 150px;
+    }
+  }
+}
+
+.section-sub-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+footer {
+  background-color: $primary;
+  padding: 50px 0 30px 0;
+  .copyrights {
+    color: #fff;
+    font-size: 14px;
+    @include media-lg {
+      font-size: 16px;
+    }
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    a {
+      margin-right: 15px;
+      transition: transform 0.2s ease;
+      &:last-of-type {
+        margin-right: 0;
+      }
+      img {
+        width: 30px;
+      }
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}

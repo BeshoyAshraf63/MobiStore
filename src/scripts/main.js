@@ -2,11 +2,15 @@ const AOS = require("aos");
 const { Nav } = require("./components/nav");
 const { Header } = require("./components/header");
 const { HeaderSwiper } = require("./components/headerSwiper");
+const { ProductsSwiper } = require("./components/productsSwiper");
+const { TestimonialsSwiper } = require("./components/testimonialsSwiper");
 
 document.addEventListener("DOMContentLoaded", function () {
   new Nav();
   new Header();
   new HeaderSwiper();
+  new ProductsSwiper();
+  new TestimonialsSwiper();
 
   // init AOS
   AOS.init({

@@ -1,0 +1,39 @@
+.search-input-wrapper {
+  width: 100%;
+  max-width: 350px;
+  // overflow: hidden;
+  // padding: 20px;
+  position: relative;
+  .search-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    img {
+      width: 25px;
+      @include media-lg {
+        width: 30px;
+      }
+    }
+  }
+}
+.form-control {
+  border-radius: 10px;
+  border: 1px solid $text-dark;
+  padding: 10px 20px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: 18px;
+  @include media-lg {
+    font-size: 20px;
+  }
+  &:focus {
+    border-color: $primary;
+    outline: 0;
+    box-shadow: 0 5px 10px rgba($color: #000000, $alpha: 0.16);
+  }
+}
+
+label {
+  margin-bottom: 10px;
+}

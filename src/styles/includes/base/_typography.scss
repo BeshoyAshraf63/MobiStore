@@ -5,10 +5,10 @@ a,
   font-weight: $font-weight-normal;
   display: inline-block;
   @include media-lg {
-    font-size: 26px;
+    font-size: 24px;
   }
   @include media-xl {
-    font-size: 36px;
+    font-size: 26px;
   }
 }
 
@@ -21,13 +21,46 @@ h1 {
   font-size: 28px;
   font-weight: $font-weight-bold;
   @include media-sm {
-    font-size: 35px;
+    font-size: 33px;
   }
   @include media-lg {
-    font-size: 50px;
+    font-size: 48px;
   }
   @include media-xl {
-    font-size: 65px;
+    font-size: 60px;
+  }
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: $font-weight-bold;
+  @include media-sm {
+    font-size: 28px;
+  }
+  @include media-lg {
+    font-size: 38px;
+  }
+  @include media-xl {
+    font-size: 50px;
+  }
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: $font-weight-bold;
+  @include media-sm {
+    font-size: 28px;
+  }
+  @include media-lg {
+    font-size: 30px;
+  }
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: $font-weight-bold;
+  @include media-lg {
+    font-size: 22px;
   }
 }
 
@@ -36,9 +69,9 @@ p {
   font-size: 18px;
   font-weight: $font-weight-light;
   @include media-lg {
-    font-size: 25px;
+    font-size: 22px;
   }
   @include media-xl {
-    font-size: 30px;
+    font-size: 28px;
   }
 }
