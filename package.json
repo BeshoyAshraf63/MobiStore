@@ -6,7 +6,7 @@
   "scripts": {
     "lint:js": "eslint . --ext .js --ignore-pattern node_modules/",
     "lint:js:fix": "eslint . --ext .js --ignore-pattern node_modules/ --fix",
-    "start:dev": "start cross-env NODE_ENV=development nodemon . && start npm run gulp:dev",
+    "start:dev": "start cross-env NODE_ENV=development PORT=8080 nodemon . && start cross-env NODE_ENV=development PORT=8080 gulp dev",
     "postinstall": "cross-env NODE_ENV=production gulp prod",
     "start": "cross-env NODE_ENV=production node .",
     "gulp:dev": "cross-env NODE_ENV=development gulp dev",

@@ -16,7 +16,7 @@ const browserSyncConfig = {
   // server: {
   //   baseDir: dev,
   // },
-  proxy: "localhost:8080",
+  proxy: "localhost:" + process.env.PORT,
 };
 
 const injectConfig = {

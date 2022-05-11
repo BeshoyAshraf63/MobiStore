@@ -18,7 +18,7 @@ class Nav {
     this.profileMenuState = "closed";
     this.cartMenuState = "closed";
     this.scrollClass = "navbar-scroll";
-    this.menuLinkHrefPrefix = "index.html";
+    this.menuLinkHrefPrefix = "/";
     this.lg_breakpoint = 992;
 
     if (this.nav) {
