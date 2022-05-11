@@ -17,7 +17,7 @@ app.set("views", path.join(__dirname, "../views"));
 
 // index page
 app.get("/", function (req, res) {
-  res.redirect("/auth");
+  // res.redirect("/auth");
   res.render("index", { data: { ff: "hhh" } });
 });
 

@@ -3,29 +3,29 @@
         {
             name: "home",
             dispName: "Home",
-            href: "index.html#home"
+            href: "/#home"
         },
         {
             name: "products",
             dispName: "Products",
-            href: "index.html#products"
+            href: "/#products"
         },
         {
             name: "testimonials",
             dispName: "Testimonials",
-            href: "index.html#testimonials"
+            href: "/#testimonials"
         },
         {
             name: "contact",
             dispName: "Contact Us",
-            href: "index.html#contact"
+            href: "/#contact"
         },
     ]
     
 %> 
 <nav class="navbar <%= locals.navClass && locals.navClass == 'fixed' ? 'fixed' : '' %>" id="navbar" >
     <div class="container d-flex align-items-center">
-        <a href="index.html" class="logo">
+        <a href="/" class="logo">
             <%-include('../svgs/logo.ejs') %>
         </a>
         <ul class="navbar__menu">
@@ -74,7 +74,7 @@
         </div>
     </div>
     <div class="mobile-nav">
-        <a href="index.html" class="logo dark">
+        <a href="/" class="logo dark">
             <%-include('../svgs/logo.ejs') %>
         </a>
         <ul class="mobile-nav__menu">
