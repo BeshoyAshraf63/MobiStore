@@ -1,4 +1,8 @@
-    <!-- inject:js -->
-    <!-- endinject -->
+    <% if (process.env.NODE_ENV === 'development') { %>
+      <script src="js/vendor.js"></script>
+      <script src="js/main.js"></script>
+    <% } else { %>
+      <script src="js/bundle.min.js"></script>
+    <% } %>
   </body>
 </html>

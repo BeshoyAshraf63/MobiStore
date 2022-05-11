@@ -79,3 +79,31 @@ footer {
     }
   }
 }
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.logo {
+  svg {
+    width: 170px;
+    @include media-sm {
+      width: 250px;
+    }
+  }
+  path {
+    fill: $text-dark;
+  }
+}
+
+footer {
+  .logo {
+    path {
+      fill: #fff;
+    }
+  }
+}
+
+.pt-lg {
+  padding-top: 80px;
+}

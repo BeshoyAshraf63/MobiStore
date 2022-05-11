@@ -1,6 +1,6 @@
 <% 
     const pageProps = {
-        title: "MobiStore",
+        title: "MobiStore - Cart",
         metaData: [
             {
                 name: "description",
@@ -11,12 +11,11 @@
 %> 
 <%-include('./layout/head.ejs', {pageProps}) %>
 
-<div class="app home-page scroll-section" id="home">
-    <%-include('./components/nav.ejs', {activePage: "home"}) %>
-    <%-include('./sections/header.ejs') %>
-    <%-include('./sections/products.ejs') %>
-    <%-include('./sections/testimonials.ejs') %>
-    <%-include('./sections/contact.ejs') %>
+<div class="app">
+    <%-include('./components/nav.ejs', {activePage: "products", navClass: 'fixed', showCart: false}) %>
+    <div class="container pt-lg">
+        <%-include('./components/cart.ejs') %>
+    </div>
     <%-include('./sections/footer.ejs') %>
 </div>
 

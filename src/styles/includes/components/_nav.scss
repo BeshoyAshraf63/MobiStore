@@ -11,6 +11,10 @@
   @include media-sm {
     padding: 22px 0;
   }
+  & > .container {
+    position: relative;
+    z-index: 100;
+  }
   .logo {
     svg {
       width: 170px;
@@ -23,6 +27,11 @@
       transition: fill 0.2s ease;
       @include media-lg {
         fill: $white;
+      }
+    }
+    &.dark {
+      path {
+        fill: $text-dark;
       }
     }
   }
@@ -46,6 +55,7 @@
     font-weight: $font-weight-bold;
     transition: color 0.2s ease;
     font-size: 16px;
+
     &.active,
     &:hover {
       color: $primary;
@@ -58,6 +68,7 @@
     margin-left: auto;
     display: flex;
     align-items: center;
+
     @include media-lg {
       margin-left: 0;
     }
@@ -77,9 +88,10 @@
         fill: transparent;
         transition: fill 0.2s ease;
       }
-      &:hover {
+      &:hover,
+      &.open {
         svg path {
-          fill: $black;
+          fill: $text-dark;
         }
       }
     }
@@ -141,7 +153,8 @@
       }
     }
   }
-  &.navbar-scroll {
+  &.navbar-scroll,
+  &.fixed {
     box-shadow: 0px 6px 20px rgba($color: #000000, $alpha: 0.16);
     background-color: $white;
     padding: 10px 0;
@@ -152,6 +165,116 @@
       path {
         fill: $text-dark;
       }
+    }
+  }
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 80%;
+    max-width: 500px;
+    background-color: #fff;
+    box-shadow: 5px 0 6px rgba($color: #000000, $alpha: 0.16);
+    transform: translateX(-105%);
+    transition: transform 0.2s ease;
+    z-index: 100;
+    padding: 15px 30px;
+    overflow: auto;
+    &.open {
+      transform: none;
+    }
+    @include media-lg {
+      &.open {
+        display: none;
+      }
+    }
+    .logo {
+      margin-bottom: 40px;
+    }
+    &__item {
+      border-bottom: 1px solid $text-dark;
+      &:last-of-type {
+        border-bottom-width: 0;
+      }
+    }
+    &__link {
+      padding: 15px 0;
+      color: $text-dark;
+      font-weight: $font-weight-bold;
+      &.active {
+        color: $primary;
+      }
+    }
+  }
+  .backdrop {
+    position: fixed;
+    z-index: 50;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: $black;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.1s ease;
+    &.show {
+      visibility: visible;
+      opacity: 0.2;
+    }
+    &.hidden {
+      opacity: 0;
+    }
+  }
+  .popup {
+    width: 100%;
+    width: calc(100% - 30px);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba($color: #000000, $alpha: 0.36);
+    padding: 10px;
+    position: absolute;
+    top: 87px;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $text-dark;
+    @include media-lg {
+      right: 20px;
+      transform: none;
+      border-radius: 25px;
+      max-width: 400px;
+      padding: 20px;
+    }
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.1s ease;
+    &.show {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  .profile-popup {
+    @include media-lg {
+      max-width: 300px;
+    }
+    img {
+      width: 60%;
+      max-width: 100px;
+    }
+    .profile-popup__username {
+      font-size: 22px;
+      @include media-lg {
+        font-size: 24px;
+      }
+    }
+  }
+  .cart-popup {
+    h3 {
+      font-weight: $font-weight-normal;
     }
   }
 }

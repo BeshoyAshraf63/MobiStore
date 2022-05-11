@@ -3,27 +3,27 @@
         {
             name: "home",
             dispName: "Home",
-            href: "#home"
+            href: "index.html#home"
         },
         {
             name: "products",
             dispName: "Products",
-            href: "#products"
+            href: "index.html#products"
         },
         {
             name: "testimonials",
             dispName: "Testimonials",
-            href: "#testimonials"
+            href: "index.html#testimonials"
         },
         {
             name: "contact",
             dispName: "Contact Us",
-            href: "#contact"
+            href: "index.html#contact"
         },
     ]
     
 %> 
-<nav class="navbar" id="navbar">
+<nav class="navbar <%= locals.navClass && locals.navClass == 'fixed' ? 'fixed' : '' %>" id="navbar" >
     <div class="container d-flex align-items-center">
         <a href="index.html" class="logo">
             <%-include('../svgs/logo.ejs') %>
@@ -31,18 +31,41 @@
         <ul class="navbar__menu">
             <% menuItems.forEach(item => { %>
                 <li class="navbar__item">
-                    <a href="<%= item.href %>" class="navbar__link <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
+                    <a href="<%= item.href %>" class="navbar__link inner-link <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
                 </li>
             <% }) %>
         </ul>
+        <div class="popup profile-popup" id="profile-popup">
+            <img src="assets/imgs/profile-avatar.svg" alt="" class="mb-3">
+            <h3 class="profile-popup__username mb-3">Kirollos Ashraf</h3>
+            <a href="#" class="btn btn-primary small w-100">Logout</a>
+        </div>
+        <% if (locals.showCart == undefined || locals.showCart == true) { %>
+            <div class="popup cart-popup" id="cart-popup">
+                <h3 class="text-primary mb-3">Cart</h3>
+                <div class="cart-items-wrapper w-100 mb-4">
+                    <p class="cart-empty-text text-center">The cart has no items yet</p>
+                </div>
+                <div class="row gx-0 w-100 d-none cart-btns">
+                    <div class="col-6 pe-2">
+                        <a href="#" class="btn btn-primary small w-100">Open Cart</a>
+                    </div>
+                    <div class="col-6 ps-2">
+                        <a href="#" class="btn btn-outline-primary small w-100">Checkout</a>
+                    </div>
+                </div>
+            </div>
+        <% } %>
         <div class="navbar__btns">
-            <a href="#profile-menu">
+            <a href="#profile-menu" id="profile-menu-trigger">
                 <%-include('../svgs/profile.ejs') %>
             </a>
-            <a href="#cart-menu">
-                <%-include('../svgs/cart.ejs') %>
-                <span class="navbar__cart-number">0</span>
-            </a>
+            <% if (locals.showCart == undefined || locals.showCart == true) { %>
+                <a href="#cart-menu" id="cart-menu-trigger">
+                    <%-include('../svgs/cart.ejs') %>
+                    <span class="navbar__cart-number">0</span>
+                </a>
+            <% } %>
             <a href="#mobile-menu" class="mobile-menu-trigger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -50,4 +73,19 @@
             </a>
         </div>
     </div>
+    <div class="mobile-nav">
+        <a href="index.html" class="logo dark">
+            <%-include('../svgs/logo.ejs') %>
+        </a>
+        <ul class="mobile-nav__menu">
+            <% menuItems.forEach(item => { %>
+                <li class="mobile-nav__item">
+                    <a href="<%= item.href %>" class="mobile-nav__link inner-link <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
+                </li>
+            <% }) %>
+        </ul>
+        <a href="#" class="logout-btn btn btn-primary d-block">Logout</a>
+    </div>
+    
+    <div class="backdrop"></div>
 </nav>

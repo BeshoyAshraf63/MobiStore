@@ -1,0 +1,46 @@
+.auth {
+  .nav-tabs {
+    justify-content: center;
+    border-width: 0;
+  }
+  .nav-item {
+    &:first-of-type {
+      .nav-link {
+        border-right: 2px solid #707070;
+      }
+    }
+  }
+  .nav-link {
+    border-radius: 0;
+    border-width: 0;
+    font-size: 26px;
+    text-transform: uppercase;
+    font-weight: $font-weight-bold;
+    color: $text-dark;
+    padding: 0.5rem 1.5rem;
+    @include media-lg {
+      font-size: 40px;
+    }
+
+    &.active {
+      color: $primary;
+      &:hover,
+      &:focus {
+        color: $primary;
+      }
+    }
+    &:hover,
+    &:focus {
+      color: $text-dark;
+      border-width: 0;
+    }
+  }
+  form {
+    margin: auto;
+    margin-top: 50px;
+    max-width: 500px;
+  }
+  .input-group {
+    margin-bottom: 15px;
+  }
+}

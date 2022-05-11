@@ -13,9 +13,10 @@ const delConfig = [gulpif(isDev, dev, dist)];
 const plumberConfig = enableNotification ? errorHandler : {};
 
 const browserSyncConfig = {
-  server: {
-    baseDir: dev,
-  },
+  // server: {
+  //   baseDir: dev,
+  // },
+  proxy: "localhost:8080",
 };
 
 const injectConfig = {

@@ -1,0 +1,56 @@
+<div class="auth my-5">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="login-trigger" data-bs-toggle="tab" data-bs-target="#login-tab" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="signup-trigger" data-bs-toggle="tab" data-bs-target="#signup-tab" type="button" role="tab" aria-controls="signup" aria-selected="false">Signup</button>
+        </li>
+    </ul>
+    
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="login-tab" role="tabpanel" aria-labelledby="login-trigger">
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" name="login-username" id="login-username" class="form-control">
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" name="login-password" id="login-password" class="form-control">
+                </div>
+                <div class="text-center mt-5">
+                    <button type="submit" id="login-btn" class="btn btn-primary px-5">Login</a>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="signup-tab" role="tabpanel" aria-labelledby="signup-trigger">
+            <form id="signup-form">
+                <div class="input-group">
+                    <label for="signup-firstname">First Name</label>
+                    <input type="text" name="signup-firstname" id="signup-firstname" class="form-control">
+                </div>
+                <div class="input-group">
+                    <label for="signup-lastname">Last Name</label>
+                    <input type="text" name="signup-lastname" id="signup-lastname" class="form-control">
+                </div>
+                <div class="input-group">
+                    <label for="signup-username">Username</label>
+                    <input type="text" name="signup-username" id="signup-username" class="form-control">
+                </div>
+                <div class="input-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" name="signup-password" id="signup-password" class="form-control">
+                </div>
+                <div class="input-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" name="signup-confirm-password" id="signup-confirm-password" class="form-control">
+                </div>
+                
+                <div class="text-center mt-5">
+                    <button type="submit" id="signup-btn" class="btn btn-primary px-5">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

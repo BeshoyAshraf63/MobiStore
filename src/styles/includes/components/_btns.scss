@@ -1,6 +1,9 @@
 .btn {
   font-weight: $font-weight-normal;
   border-radius: 0;
+  &.disabled {
+    color: $text-dark !important;
+  }
 }
 
 .btn-primary {
