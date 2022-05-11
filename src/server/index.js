@@ -2,6 +2,8 @@ var express = require("express");
 var path = require("path");
 var app = express();
 
+const portNo = process.env.PORT || 80;
+
 // set static folder
 const isDev = (process.env.NODE_ENV || "production") == "development";
 if (isDev) {
@@ -36,5 +38,5 @@ app.get("*", function (req, res) {
   res.send({ error: "404" });
 });
 
-app.listen(8080);
-console.log("Server is listening on port 8080");
+app.listen(portNo);
+console.log("Server is listening on port " + portNo);
