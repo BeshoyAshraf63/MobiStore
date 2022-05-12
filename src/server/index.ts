@@ -9,7 +9,7 @@ import path from "path";
 import { userAuthentication } from "./handlers/userHandler";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3050;
 app.listen(port,()=>{console.log("Server is alive :D")});
 app.use(cors());
 app.use(express.json());
@@ -17,15 +17,18 @@ app.use(cookieParser());
 
 // set static folder
 const isDev = (process.env.NODE_ENV || "production") == "development";
-if (isDev) {
-  app.use(express.static("dev"));
-} else {
-  app.use(express.static("dist"));
-}
+
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../views"));
+
+if (isDev) {
+  app.use(express.static("dev"));
+  app.set("views", path.join(__dirname, "../views"));
+} else {
+  app.use(express.static("dist"));
+  app.set("views", path.join(__dirname, "../src/views"));
+}
 
 app.get("/test",async function (req, res) {
     res.render('index')
