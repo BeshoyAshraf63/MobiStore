@@ -53,3 +53,6 @@ dev
 
 #dist folder
 dist
+
+#build folder
+build
