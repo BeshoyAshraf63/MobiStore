@@ -1,0 +1,9 @@
+{
+    "dev": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "mobi_shop",
+      "user": "postgres",
+      "password": "1234"
+    }
+}
