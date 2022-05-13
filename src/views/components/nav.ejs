@@ -20,6 +20,11 @@
             dispName: "Contact Us",
             href: "/#contact"
         },
+        {
+            name: "dashboard",
+            dispName: "Dashboard",
+            href: "/dashboard"
+        },
     ]
     
 %> 
@@ -30,8 +35,8 @@
         </a>
         <ul class="navbar__menu">
             <% menuItems.forEach(item => { %>
-                <li class="navbar__item">
-                    <a href="<%= item.href %>" class="navbar__link inner-link <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
+                <li class="navbar__item <%= item.name == 'dashboard' ? 'dashboard-link' : '' %>">
+                    <a href="<%= item.href %>" class="navbar__link <%= item.name != 'dashboard' ? 'inner-link' : '' %> <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
                 </li>
             <% }) %>
         </ul>
@@ -48,10 +53,10 @@
                 </div>
                 <div class="row gx-0 w-100 d-none cart-btns">
                     <div class="col-6 pe-2">
-                        <a href="#" class="btn btn-primary small w-100">Open Cart</a>
+                        <a href="/cart" class="btn btn-primary small w-100">Open Cart</a>
                     </div>
                     <div class="col-6 ps-2">
-                        <a href="#" class="btn btn-outline-primary small w-100">Checkout</a>
+                        <a href="/checkout" class="btn btn-outline-primary small w-100">Checkout</a>
                     </div>
                 </div>
             </div>
@@ -79,8 +84,8 @@
         </a>
         <ul class="mobile-nav__menu">
             <% menuItems.forEach(item => { %>
-                <li class="mobile-nav__item">
-                    <a href="<%= item.href %>" class="mobile-nav__link inner-link <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
+                <li class="mobile-nav__item <% item.name == 'dashboard' ? 'dashboard-link' : '' %>">
+                    <a href="<%= item.href %>" class="mobile-nav__link <% item.name != 'dashboard' ? 'inner-link' : '' %> <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
                 </li>
             <% }) %>
         </ul>

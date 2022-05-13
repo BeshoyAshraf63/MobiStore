@@ -41,17 +41,22 @@ const createHandler = async(req:Request,res:Response)=>{
         
         if(userName.length < 4 || firstName.length < 4 || lastName.length <4 || password.length<2)
         {
-            return res.json("Invalid DATA");
+            res.send({result : "invalid data"});
         }
         const new_user:User = new User(userName,password,firstName,lastName,1);
         const user_table = new UserTable();
         await user_table.create(new_user);
-
-        return res.json("Account created Successfully!").status(200);
+        res.cookie("type", 1);
+        res.cookie("firstName",firstName);
+        res.cookie("lastName",lastName);
+        res.cookie("userName",userName);
+        res.send({result : "success"}).status(200);
+        // return res.json("Account created Successfully!").status(200);
     }
     catch(err)
     {
-        res.json("This user name is used or Invalid data");
+        res.send({result : "already registered or invalid data"});
+        // res.json("This user name is used or Invalid data");
         //throw new Error(`${err}`);
     }
 };

@@ -19,7 +19,7 @@ const indexHandler = async(req:Request,res:Response)=>{
         const product_table = new ProductTable();
         const result = await product_table.index();
         // call api 
-        res.render('index', {result})
+        res.render('index', {products: result})
         // res.json(result).status(200);
     }
     catch(err)
@@ -53,11 +53,13 @@ const createHandler = async(req:Request,res:Response)=>{
         const productPrice = Number(req.body.price);
         const productCategory = req.body.category;
         const productStatus = Number(req.body.status);
+        const productImg = req.body.img;
         const prod:Product = new Product(productName,
             productDescription,
             productPrice,
             productCategory,
-            productStatus);
+            productStatus,
+            productImg);
         const prod_table = new ProductTable();
         const result = await prod_table.create(prod);
         res.send("Successfully added").status(200);
@@ -79,12 +81,15 @@ const updateHandler = async(req:Request,res:Response)=>{
         const productPrice = Number(req.body.price);
         const productCategory = req.body.category;
         const productStatus = Number(req.body.status);
+        const productImg = req.body.img;
         const ID = Number(req.body.id);
         const prod:Product = new Product(productName,
             productDescription,
             productPrice,
             productCategory,
-            productStatus);
+            productStatus,
+            productImg);
+            
 
         const prod_table = new ProductTable();
         const result = await prod_table.update(ID,prod);

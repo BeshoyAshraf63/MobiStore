@@ -24,6 +24,5 @@ if(isDev){
     }
 }
 const db = new Pool(connection);
-console.log(db)
 
 export default db;

@@ -8,6 +8,6 @@ CREATE TABLE product(
     status integer,
     description text,
     likes integer,
-    dislikes integer 
-
+    dislikes integer, 
+    img VARCHAR(255)
  );

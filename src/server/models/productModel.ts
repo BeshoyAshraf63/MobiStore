@@ -46,7 +46,7 @@ export class ProductTable
         try
         {
             const connection = await db.connect();
-            const query:string = "INSERT INTO product(name,price,category,status,description,likes,dislikes) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *";
+            const query:string = "INSERT INTO product(name,price,category,status,description,likes,dislikes,img) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *";
             let result:any = await connection.query(query,[
                 prod.getName(),
                 prod.getPrice(),
@@ -54,7 +54,8 @@ export class ProductTable
                 prod.getStatus(),
                 prod.getDescription(),
                 prod.getLikes(),
-                prod.getDislikes()
+                prod.getDislikes(),
+                prod.getImg()
             ]);
             result = result.rows[0];
             connection.release();
@@ -72,7 +73,7 @@ export class ProductTable
         try
         {
             const connection = await db.connect();
-            const query = "UPDATE product SET name =$1,price=$2,category=$3,status=$4,description=$5,likes=$6,dislikes=$7 WHERE id=$8";
+            const query = "UPDATE product SET name =$1,price=$2,category=$3,status=$4,description=$5,likes=$6,dislikes=$7,img=$8 WHERE id=$9";
             await connection.query(query,[
                 prod.getName(),
                 prod.getPrice(),
@@ -81,6 +82,7 @@ export class ProductTable
                 prod.getDescription(),
                 prod.getLikes(),
                 prod.getDislikes(),
+                prod.getImg(),
                 id
             ]);
             const query2 = "SELECT * FROM product WHERE id=$1";

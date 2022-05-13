@@ -8,14 +8,16 @@ export class Product
     private description:string;
     private likes:number|undefined = 0;
     private dislikes:number|undefined = 0;
+    private img:string;
 
-    constructor(name:string,descr:string,price:number,category:string,status:number)
+    constructor(name:string,descr:string,price:number,category:string,status:number,img:string)
     {
         this.name = name;
         this.price = price;
         this.category = category;
         this.status = status;
         this.description = descr;
+        this.img = img;
     }
 
     public setName(name:string):void
@@ -45,6 +47,10 @@ export class Product
     public setDislikes(disLikes:number):void
     {
         this.dislikes = disLikes;
+    }
+    public setImg(img:string):void
+    {
+        this.img = img;
     }
 
 
@@ -83,5 +89,9 @@ export class Product
     {
         let dislikes = Number(this.dislikes);
         return this.dislikes;
+    }
+    public getImg():string
+    {
+        return this.img;
     }
 }

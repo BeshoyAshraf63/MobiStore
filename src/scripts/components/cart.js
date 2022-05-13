@@ -1,31 +1,43 @@
 const { customInput } = require("./customInput");
 const $ = require("jquery");
-const { products, order } = require("./products");
+let { order } = require("./products");
 
+let products;
 class Cart {
   constructor() {
     this.numberInputs = $(".custom-number-input");
     this.addToCartBtns = $(".product-add-to-cart");
 
-    this.numberInputs.each(function (i, el) {
-      customInput(el);
-    });
+    if ($(".cart-items-wrapper").length) {
+      this.numberInputs.each(function (i, el) {
+        customInput(el);
+      });
 
-    $(document).on("click", ".product-add-to-cart", (e) => {
-      e.preventDefault();
-      this.addToOrder(e);
-    });
+      $(document).on("click", ".product-add-to-cart", (e) => {
+        e.preventDefault();
+        this.addToOrder($(e.target).attr("data-product-id"));
+      });
 
-    $(document).on("change", ".cart-item .number-input", (e) => {
-      this.updateOrder($(e.target).parents(".cart-item"));
-    });
+      $(document).on("change", ".cart-item .number-input", (e) => {
+        this.updateOrder($(e.target).parents(".cart-item"));
+      });
+      if ($(".cart-page").length && localStorage.getItem("cart")) {
+        products = JSON.parse(localStorage.getItem("cart"));
+      } else {
+        products = window.allProducts;
+      }
+      this.initialUpdate();
+    }
+
+    if ($(".auth-page").length) {
+      window.localStorage.clear();
+    }
   }
 
-  addToOrder(el) {
-    const productId = $(el.target).attr("data-product-id");
+  addToOrder(productId) {
     let index = 0;
     products.every((product) => {
-      if (product.id === productId) {
+      if (product.id === parseInt(productId)) {
         return false;
       }
       index++;
@@ -49,21 +61,22 @@ class Cart {
         .text("Added to Cart")
         .addClass("btn-outline-primary disabled")
         .removeClass("btn-primary");
-      this.addToCart(index);
+      this.addToCart(index, order.length - 1);
     }
+    window.localStorage.removeItem("cart");
+    let cart = order.map((cartItem) => {
+      return { ...products[cartItem.index], qty: cartItem.qty };
+    });
+    window.localStorage.setItem("cart", JSON.stringify(cart));
   }
 
-  addToCart(productIndex) {
+  addToCart(productIndex, orderIndex) {
     const product = products[productIndex];
     let cartHtml = `
-        <div class="cart-item new-cart-item" data-product-index="${productIndex}" data-order-index="${
-      order.length - 1
-    }">
+        <div class="cart-item new-cart-item" data-product-index="${productIndex}" data-order-index="${orderIndex}">
             <div class="row gx-0">
             <div class="col-3 pe-2">
-                <img src="assets/imgs/products/${product.img}" alt="${
-      product.name
-    }" class="img-fluid">
+                <img src="assets/imgs/products/${product.img}" alt="${product.name}" class="img-fluid">
             </div>
             <div class="col-9">
                 <p class="cart-item__product-name">${product.name}</p>
@@ -96,6 +109,7 @@ class Cart {
 
   updateOrder(cartItem) {
     const qty = parseInt(cartItem.find(".number-input").val());
+    // console.log(qty);
     if (qty == 0) {
       const orderIndex = parseInt(cartItem.attr("data-order-index"));
       $(
@@ -120,6 +134,12 @@ class Cart {
     } else {
       order[parseInt(cartItem.attr("data-order-index"))].qty = qty;
     }
+    window.localStorage.removeItem("cart");
+    // let cart = { ...products[order.index], qty: order.qty };
+    let cart = order.map((cartItem) => {
+      return { ...products[cartItem.index], qty: cartItem.qty };
+    });
+    window.localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   removeFromCart(cartItem) {
@@ -129,6 +149,26 @@ class Cart {
       $(".cart-btns").addClass("d-none");
     }
     $(".navbar__cart-number").text(order.length);
+  }
+
+  initialUpdate() {
+    const prevOrders = window.localStorage.getItem("cart");
+    if (prevOrders) {
+      const cartItems = JSON.parse(prevOrders);
+      let counter = 0;
+      cartItems.every((product) => {
+        this.addToOrder(product.id);
+        if (product.qty > 1) {
+          order[counter].qty = product.qty;
+          $(`.cart-item[data-order-index="${counter}"] .number-input`).val(
+            product.qty
+          );
+        }
+        counter++;
+        return true;
+      });
+      window.localStorage.setItem("cart", prevOrders);
+    }
   }
 }
 
