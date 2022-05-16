@@ -3,7 +3,7 @@
         {
             name: "home",
             dispName: "Home",
-            href: "/#home"
+            href: "/"
         },
         {
             name: "products",
@@ -85,11 +85,11 @@
         <ul class="mobile-nav__menu">
             <% menuItems.forEach(item => { %>
                 <li class="mobile-nav__item <% item.name == 'dashboard' ? 'dashboard-link' : '' %>">
-                    <a href="<%= item.href %>" class="mobile-nav__link <% item.name != 'dashboard' ? 'inner-link' : '' %> <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
+                    <a href="<%= item.href %>" class="mobile-nav__link <%= item.name != 'dashboard' ? 'inner-link' : '' %> <%= locals.activePage == item.name ? 'active' : '' %>"><%= item.dispName %></a>
                 </li>
             <% }) %>
         </ul>
-        <a href="#" class="logout-btn btn btn-primary d-block">Logout</a>
+        <a href="/users/logout" class="logout-btn btn btn-primary d-block">Logout</a>
     </div>
     
     <div class="backdrop"></div>

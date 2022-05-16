@@ -189,7 +189,7 @@ export const adminAuthentication = async(req:Request,res:Response,next:Function)
     catch(err)
     {
         res.send("You are not the Admin to access this page!");
-        console.log(err);
+        // console.log(err);
     }
 };
 

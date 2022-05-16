@@ -21,10 +21,15 @@ class Cart {
       $(document).on("change", ".cart-item .number-input", (e) => {
         this.updateOrder($(e.target).parents(".cart-item"));
       });
-      if ($(".cart-page").length && localStorage.getItem("cart")) {
+      if ($(".home-page").length) {
+        products = window.allProducts;
+      } else if (
+        ($(".cart-popup").length || $(".cart-page").length) &&
+        localStorage.getItem("cart")
+      ) {
         products = JSON.parse(localStorage.getItem("cart"));
       } else {
-        products = window.allProducts;
+        products = [];
       }
       this.initialUpdate();
     }
@@ -105,6 +110,9 @@ class Cart {
     $(".cart-empty-text").addClass("d-none");
     $(".cart-btns").removeClass("d-none");
     $(".navbar__cart-number").text(order.length);
+    if ($(".cart-total-price").length) {
+      $(".cart-total-price").text("$" + this.calculateTotalPrice());
+    }
   }
 
   updateOrder(cartItem) {
@@ -140,6 +148,9 @@ class Cart {
       return { ...products[cartItem.index], qty: cartItem.qty };
     });
     window.localStorage.setItem("cart", JSON.stringify(cart));
+    if ($(".cart-total-price").length) {
+      $(".cart-total-price").text("$" + this.calculateTotalPrice());
+    }
   }
 
   removeFromCart(cartItem) {
@@ -163,12 +174,29 @@ class Cart {
           $(`.cart-item[data-order-index="${counter}"] .number-input`).val(
             product.qty
           );
+          if ($(".cart-total-price").length) {
+            $(".cart-total-price").text("$" + this.calculateTotalPrice());
+          }
         }
         counter++;
         return true;
       });
       window.localStorage.setItem("cart", prevOrders);
     }
+  }
+
+  calculateTotalPrice() {
+    let price = 0;
+    let cart = order.map((cartItem) => {
+      return { ...products[cartItem.index], qty: cartItem.qty };
+    });
+    cart.every((item) => {
+      const qty = item.qty;
+      const itemPrice = item.price;
+      price += qty * itemPrice;
+      return true;
+    });
+    return price;
   }
 }
 

@@ -6,7 +6,9 @@ import userHandler from "./handlers/userHandler";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
-import { userAuthentication } from "./handlers/userHandler";
+import { userAuthentication, adminAuthentication } from "./handlers/userHandler";
+import nodemailer from "nodemailer";
+import 'dotenv/config'
 
 const app = express();
 const port = process.env.PORT || 3050;
@@ -57,3 +59,47 @@ app.get("/auth", function (req:Request, res:Response) {
 productHandler(app);
 userHandler(app);
 OrderHandler(app);
+
+app.get("/dashboard", adminAuthentication, async (req:Request, res:Response)=>
+{
+  res.render('dashboard')
+});
+
+app.get("*", (req:Request, res:Response)=>
+{
+  res.send({'error': 404})
+});
+
+app.post("/contact", async (req:Request, res:Response)=>
+{
+  try{
+
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminPassword = process.env.ADMIN_PASS;
+  
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: adminEmail,
+        pass: adminPassword,
+      },
+      tls: {
+        rejectUnauthorized: false
+    }
+    });
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"Kirollos Ashraf" <kirollos.ashraf.sedky@gmail.com>', // sender address
+      to: adminEmail, // list of receivers
+      subject: "Hello ✔", // Subject line
+      text: "Hello world?", // plain text body
+    });
+  
+    console.log("Message sent: %s", info.messageId);
+    res.send({result: "success"})
+  }
+  catch(e){
+    console.log(e)
+    res.send({result: "error"})
+  }
+});

@@ -56,3 +56,6 @@ dist
 
 #build folder
 build
+
+#env file
+.env
