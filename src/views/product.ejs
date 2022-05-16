@@ -1,0 +1,32 @@
+<% 
+    const pageProps = {
+        title: "MobiStore - product",
+        metaData: [
+            {
+                name: "description",
+                content: "Ecommerce website for selling mobiles, tablets and laptops"
+            }
+        ]
+    }
+%> 
+<%-include('./layout/head.ejs', {pageProps}) %>
+
+<div class="app single-product-page">
+    <%-include('./components/nav.ejs', {activePage: "products", navClass: 'fixed', showCart: true}) %>
+    <div class="container pt-lg">
+        <div class="product-page mb-5">
+            <img src="/assets/imgs/products/<%= product.img %>" alt="<%= product.name %>" class="img-fluid product-img mb-4">
+            <h3 class="product-title"><%= product.name %></h3>
+            <p class="product-price">$<%= product.price %></p>
+            <p><%= product.description %></p>
+            <a href="#" class="btn btn-primary product-add-to-cart single-product" data-product-id="<%= product.id %>">Add To Cart</a>
+        </div>
+    </div>
+    <%-include('./sections/footer.ejs') %>
+</div>
+
+<%-include('./layout/footer.ejs') %>
+<% const singleProduct = JSON.stringify(product) %>
+<script>
+    window.singleProduct = JSON.parse('<%- singleProduct %>');
+</script>

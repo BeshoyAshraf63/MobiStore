@@ -8,7 +8,7 @@ import db from "../database";
 
 
 const userHandler = (app:express.Application)=>{
-    app.get("/users/index",adminAuthentication,indexHandler);
+    app.get("/dashboard/users",adminAuthentication,indexHandler);
     app.post("/users/create",createHandler);
     app.put("/users/update",adminAuthentication,updateHandler);
     app.delete("/users/delete",adminAuthentication,deleteHandler);
@@ -20,8 +20,19 @@ const indexHandler = async(req:Request,res:Response)=>{
     try
     {
         const user_table = new UserTable();
-        const result = await user_table.index();
-        res.json(result).status(200);
+        const result:any = await user_table.index();
+
+        const users = result.map((user:any) => {
+            return {
+                id: user.id,
+                firstName: user.first_name,
+                lastName: user.last_name,
+                userName: user.user_name,
+                isAdmin: user.type == 2
+            }
+        })
+        console.log(users)
+        res.render('dashboard/users', {users: users})
     }
     catch(err)
     {

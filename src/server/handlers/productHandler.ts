@@ -7,11 +7,13 @@ import { userAuthentication,adminAuthentication } from "./userHandler";
 
 const productHandler = (app:express.Application)=>{
     app.get("/",userAuthentication,indexHandler);
-    app.get("/products/show/:productId",showHandler);
+    app.get("/dashboard/products",adminAuthentication,dashboardHandler);
+    app.get("/products/:productId",showHandler);
     app.post("/products/create",adminAuthentication,createHandler);
     app.put("/products/update",adminAuthentication,updateHandler);
     app.delete("/products/delete",adminAuthentication,deleteHandler);
 };
+
 const indexHandler = async(req:Request,res:Response)=>{
 
     try
@@ -29,12 +31,31 @@ const indexHandler = async(req:Request,res:Response)=>{
     }
 };
 
+const dashboardHandler = async(req:Request,res:Response)=>{
+
+    try
+    {
+        const product_table = new ProductTable();
+        const result = await product_table.index();
+        res.render('dashboard/products', {products: result})
+    }
+    catch(err)
+    {
+        console.log(err);
+        throw new Error(`${err}`);
+    }
+};
+
 const showHandler = async(req:Request,res:Response)=>{
     try
     {
         const prod_table = new ProductTable();
-        const product = await prod_table.show(Number(req.params.productId));
-        return res.json(product);
+        const result = await prod_table.show(Number(req.params.productId));
+        if(result){
+            res.render('product', {product: result});
+        }else{
+            res.redirect('not-found')
+        }
 
     }
     catch(err)

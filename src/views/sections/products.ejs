@@ -6,7 +6,7 @@
             <div class="search-input-wrapper">
                 <input type="text" placeholder="Search for products" class="form-control search-input">
                 <button class="btn search-btn">
-                    <img src="assets/imgs/home/search-icon.svg" alt="search" class="img-fluid">
+                    <img src="/assets/imgs/home/search-icon.svg" alt="search" class="img-fluid">
                 </button>
             </div>
         </form>
@@ -25,7 +25,9 @@
                 %>
                     <div class="swiper-slide">
                         <div class="product-item">
-                            <img src="assets/imgs/products/<%= product.img %>" alt="<%= product.name %>" class="img-fluid product-img">
+                            <a href="/products/<%= product.id %>">
+                                <img src="/assets/imgs/products/<%= product.img %>" alt="<%= product.name %>" class="img-fluid product-img">
+                            </a>
                             <h4 class="product-title"><%= product.name %></h4>
                             <p class="product-price">$<%= product.price %></p>
                             <a href="#" class="btn btn-primary product-add-to-cart" data-product-id="<%= product.id %>">Add To Cart</a>
@@ -42,7 +44,9 @@
                 %>
                 <div class="col-12 col-sm-6 col-lg-4 mb-4">
                     <div class="product-item <%= index > 9 ? 'hidden' : '' %>">
-                        <img src="assets/imgs/products/<%= product.img %>" alt="<%= product.name %>" class="img-fluid product-img">
+                        <a href="/products/<%= product.id %>">
+                            <img src="/assets/imgs/products/<%= product.img %>" alt="<%= product.name %>" class="img-fluid product-img">
+                        </a>
                         <h4 class="product-title"><%= product.name %></h4>
                         <p class="product-price">$<%= product.price %></p>
                         <a href="#" class="btn btn-primary product-add-to-cart" data-product-id="<%= product.id %>">Add To Cart</a>

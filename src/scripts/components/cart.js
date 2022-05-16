@@ -31,6 +31,9 @@ class Cart {
       } else {
         products = [];
       }
+      if ($(".single-product-page").length) {
+        products.push(window.singleProduct);
+      }
       this.initialUpdate();
     }
 
@@ -40,6 +43,7 @@ class Cart {
   }
 
   addToOrder(productId) {
+    // if (!flag) {
     let index = 0;
     products.every((product) => {
       if (product.id === parseInt(productId)) {
@@ -73,6 +77,31 @@ class Cart {
       return { ...products[cartItem.index], qty: cartItem.qty };
     });
     window.localStorage.setItem("cart", JSON.stringify(cart));
+    // } else {
+    //   let cart;
+    //   if (window.localStorage.getItem("cart")) {
+    //     cart = JSON.parse(window.localStorage.getItem("cart"));
+    //   } else {
+    //     cart = [];
+    //   }
+    //   let isFound = false;
+    //   cart.every((item) => {
+    //     if (item.id == productId) {
+    //       isFound = true;
+    //       return false;
+    //     }
+    //     return true;
+    //   });
+    //   if (!isFound) {
+    //     window.singleProduct.qty = 1;
+    //     cart.push(window.singleProduct);
+    //     order.push({
+    //       index: 0,
+    //       qty: 1,
+    //     });
+    //     window.localStorage.setItem("cart", JSON.stringify(cart));
+    //   }
+    // }
   }
 
   addToCart(productIndex, orderIndex) {
@@ -81,7 +110,7 @@ class Cart {
         <div class="cart-item new-cart-item" data-product-index="${productIndex}" data-order-index="${orderIndex}">
             <div class="row gx-0">
             <div class="col-3 pe-2">
-                <img src="assets/imgs/products/${product.img}" alt="${product.name}" class="img-fluid">
+                <img src="/assets/imgs/products/${product.img}" alt="${product.name}" class="img-fluid">
             </div>
             <div class="col-9">
                 <p class="cart-item__product-name">${product.name}</p>

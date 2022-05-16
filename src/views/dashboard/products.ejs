@@ -1,0 +1,52 @@
+<% 
+    const pageProps = {
+        title: "MobiStore - Dashboard - Products",
+        metaData: [
+            {
+                name: "description",
+                content: "Ecommerce website for selling mobiles, tablets and laptops"
+            }
+        ]
+    }
+%> 
+<%-include('../layout/head.ejs', {pageProps}) %>
+
+<div class="app">
+    <%-include('../components/nav.ejs', {activePage: "dashboard", navClass: 'fixed', showCart: false}) %>
+    <div class="container pt-lg">
+        
+        <h2 class="text-center mb-5">List of all Products</h2>
+        <div class="table-wrapper">
+            <table class="table mb-5 table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col" class="min-150">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">description</th>
+                        <th scope="col" class="w-150">image</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach(product => { %>
+                        <tr>
+                            <th scope="row"><%= product.id %></th>
+                            <td><%= product.name %></td>
+                            <td>$<%= product.price %></td>
+                            <td><%= product.description %></td>
+                            <td>
+                                <img src="/assets/imgs/products/<%= product.img %>" alt="<%= product.name %>" class="img-fluid">
+                            </td>
+                            <td><a href="#" class="btn btn-danger">X</a></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+    <%-include('../sections/footer.ejs') %>
+</div>
+
+<%-include('../layout/footer.ejs') %>

@@ -57,3 +57,16 @@
     }
   }
 }
+
+.product-page {
+  margin: auto;
+  max-width: 500px;
+  text-align: center;
+  .product-price {
+    color: $primary;
+    font-size: 30px;
+    @include media-lg {
+      font-size: 35px;
+    }
+  }
+}

@@ -11,11 +11,19 @@ class Contact {
   }
 
   sendEmail() {
-    // const username = this.loginForm.loginUsername.value;
+    const name = this.contactForm.contactUsName.value;
+    const phone = this.contactForm.contactUsPhone.value;
+    const email = this.contactForm.contactUsEmail.value;
+    const subject = this.contactForm.contactUsSubject.value;
+    const msg = this.contactForm.contactUsMsg.value;
     // const password = this.loginForm.loginPassword.value;
     const url = window.location.origin + "/contact";
     const data = {
-      test: "test",
+      name,
+      phone,
+      email,
+      subject,
+      msg,
     };
     fetch(url, {
       method: "POST",
