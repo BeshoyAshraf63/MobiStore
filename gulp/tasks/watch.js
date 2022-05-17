@@ -20,7 +20,7 @@ const watcher = (done) => {
   watch(styles.srcWatch, series(stylesBuild, reload));
   watch(public.src, series(publicBuild, reload));
   watch(assets.src, series(assetsWithoutImgsBuild, reload));
-  watch(imgs.src, series(imgsBuild, reload));
+  watch(imgs.src, imgsBuild);
   watch(scripts.srcWatch, series(scriptsBuild, reload));
   done();
 };

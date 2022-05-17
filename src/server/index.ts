@@ -9,6 +9,18 @@ import path from "path";
 import { userAuthentication, adminAuthentication } from "./handlers/userHandler";
 import nodemailer from "nodemailer";
 import 'dotenv/config'
+import paypal, { Payment, payment, PaymentResponse } from 'paypal-rest-sdk';
+
+declare var process : {
+  env: {
+    NODE_ENV: string,
+    PORT: string,
+    PAYPAL_CLIENT_ID: string,
+    PAYPAL_CLIENT_SECRET: string,
+    ADMIN_EMAIL: string,
+    ADMIN_PASS: string
+  }
+}
 
 const app = express();
 const port = process.env.PORT || 3050;
@@ -19,7 +31,6 @@ app.use(cookieParser());
 
 // set static folder
 const isDev = (process.env.NODE_ENV || "production") == "development";
-
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
@@ -32,16 +43,15 @@ if (isDev) {
   app.set("views", path.join(__dirname, "../src/views"));
 }
 
-// app.get("/", userAuthentication, async(req:Request, res:Response)=>
-// {
-
-//   res.render('index', {})
-// });
-
 app.get("/cart", userAuthentication, async(req:Request, res:Response)=>
 {
   res.render('cart')
 });
+
+// app.get("/checkout", userAuthentication, async(req:Request, res:Response)=>
+// {
+//   res.render('cart')
+// });
 
 app.get("/auth", function (req:Request, res:Response) {
   const type = Number(req.cookies.type);
@@ -124,10 +134,79 @@ app.post("/contact", async (req:Request, res:Response)=>
   }
 });
 
+paypal.configure({
+  'mode': 'sandbox',
+  'client_id': process.env.PAYPAL_CLIENT_ID,
+  'client_secret': process.env.PAYPAL_CLIENT_SECRET
+});
+
+app.post('/checkout', (req: Request, res: Response) => {
+  const order = req.body.order;
+  console.log(order)
+  let items:any = [];
+  let totalPrice = 0;
+  order.forEach((item:any) => {
+    items.push({
+          "name": item.name,
+          "sku": item.name,
+          "price": item.price,
+          "currency": "USD",
+          "quantity": item.qty
+    })
+    totalPrice += (item.price * item.qty);
+  });
+
+  const create_payment_json:any = {
+    "intent": "sale",
+    "payer": {
+        "payment_method": "paypal"
+    },
+    "redirect_urls": {
+        "return_url": req.protocol + '://' + req.get('host') + '/success',
+        "cancel_url": req.protocol + '://' + req.get('host') + '/'
+    },
+    "transactions": [{
+        "item_list": {
+            "items": items
+        },
+        "amount": {
+            "currency": "USD",
+            "total": totalPrice
+        },
+        "description": "MobiStore Shop"
+    }]
+};
+
+  paypal.payment.create(create_payment_json , function (error, payment:any) {
+    if (error) {
+        res.send({result: "error"})
+    } else {
+        for(let i = 0;i < payment.links.length;i++){
+          if(payment.links[i].rel === 'approval_url'){
+            res.send({result: "success", redirect: payment.links[i].href})
+          }
+        }
+    }
+  });
+
+});
+
+app.get('/success', (req:Request, res:Response) => {
+  const payerId:any = { 'payer_id': req.query.PayerID };
+  const paymentId:any = req.query.paymentId;
+    paypal.payment.execute(paymentId, payerId, function (error, payment) {
+      if (error) {
+        res.redirect('/error');
+      } else {
+          res.render('checkout-success');
+      }
+  });
+});
+
 app.get("/not-found", (req:Request, res:Response) => {
-  res.send("not found")
+  res.render('error')
 });
 
 app.get("*", (req:Request, res:Response) => {
-  res.send({'error': 404})
+  res.render('error')
 });

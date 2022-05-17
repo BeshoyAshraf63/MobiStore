@@ -7,7 +7,7 @@ const password = "1234";
 const databaseName = "mobi_shop";
 
 let connection;
-if(isDev){
+if(isDev || !process.env.DATABASE_URL){
     connection = {
         host:host,
         user:userName,

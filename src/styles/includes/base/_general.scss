@@ -115,6 +115,9 @@ footer {
 .table {
   width: 100%;
   min-width: 700px;
+  th {
+    text-align: center;
+  }
   td,
   th {
     padding-top: 15px;

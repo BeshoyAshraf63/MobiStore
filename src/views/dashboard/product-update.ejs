@@ -1,0 +1,56 @@
+<% 
+    const pageProps = {
+        title: "MobiStore - Dashboard - Product Update",
+        metaData: [
+            {
+                name: "description",
+                content: "Ecommerce website for selling mobiles, tablets and laptops"
+            }
+        ]
+    }
+%> 
+<%-include('../layout/head.ejs', {pageProps}) %>
+
+<div class="app">
+    <%-include('../components/nav.ejs', {activePage: "dashboard", navClass: 'fixed', showCart: false}) %>
+    <div class="container pt-lg">
+        
+        <h2 class="text-center mb-3">Update Product</h2>
+        <h3 class="text-center mb-5"><%= product.name %></h3>
+        <form class="my-5 product-form" id="update-product-form" data-id="<%= product.id %>">
+            <div class="row">
+                <div class="col-12 col-lg-6 mb-4">
+                    <label for="updateProductName">Name</label>
+                    <input type="text" name="updateProductName" id="updateProductName" class="form-control" value="<%= product.name %>" required>
+                </div>
+                <div class="col-12 col-lg-6 mb-4">
+                    <label for="updateProductPrice">Price</label>
+                    <input type="number" name="updateProductPrice" id="updateProductPrice" class="form-control" value="<%= product.price %>" required>
+                </div>
+                <div class="col-12 mb-4">
+                    <label for="updateProductDescription">Description</label>
+                    <textarea name="updateProductDescription" id="updateProductDescription" class="form-control" rows="5" required><%= product.description %></textarea>
+                </div>
+                
+                <div class="col-12 mb-4">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 mb-4">
+                            <label class="d-block">Current Image</label>
+                            <img src="/assets/imgs/products/<%= product.img %>" alt="<%= product.name %>" class="img-fluid d-block current-img">
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <label for="updateProductImage">Change Image</label>
+                            <input  class="d-block" type="file" id="updateProductImage" name="updateProductImage" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-primary px-5">Update Product</a>
+            </div>
+        </form>
+    </div>
+    <%-include('../sections/footer.ejs') %>
+</div>
+
+<%-include('../layout/footer.ejs') %>

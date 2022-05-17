@@ -15,7 +15,10 @@
     <%-include('../components/nav.ejs', {activePage: "dashboard", navClass: 'fixed', showCart: false}) %>
     <div class="container pt-lg">
         
-        <h2 class="text-center mb-5">List of all Products</h2>
+        <h2 class="text-center mb-4">List of all Products</h2>
+        <div class="text-center">
+            <a href="/dashboard/products/add" class="btn btn-primary px-5 mb-5">Add Product</a>
+        </div>
         <div class="table-wrapper">
             <table class="table mb-5 table-striped">
                 <thead>
@@ -26,6 +29,7 @@
                         <th scope="col">description</th>
                         <th scope="col" class="w-150">image</th>
                         <th scope="col">Delete</th>
+                        <th scope="col">Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,7 +42,8 @@
                             <td>
                                 <img src="/assets/imgs/products/<%= product.img %>" alt="<%= product.name %>" class="img-fluid">
                             </td>
-                            <td><a href="#" class="btn btn-danger">X</a></td>
+                            <td><a href="#" data-product="<%= product.id %>" class="btn btn-product-delete">X</a></td>
+                            <td><a href="/dashboard/products/update/<%= product.id %>" class="btn">Edit</a></td>
                         </tr>
                     <% }) %>
                 </tbody>

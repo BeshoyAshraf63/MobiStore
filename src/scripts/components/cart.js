@@ -35,6 +35,13 @@ class Cart {
         products.push(window.singleProduct);
       }
       this.initialUpdate();
+
+      if ($("#checkoutBtn").length) {
+        $("#checkoutBtn").on("click", (e) => {
+          e.preventDefault();
+          this.checkout();
+        });
+      }
     }
 
     if ($(".auth-page").length) {
@@ -226,6 +233,33 @@ class Cart {
       return true;
     });
     return price;
+  }
+
+  checkout() {
+    if (order) {
+      const finalOrder = order.map((item) => {
+        const product = products[item.index];
+        product.qty = item.qty;
+        return product;
+      });
+      const url = window.location.origin + "/checkout";
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ order: finalOrder }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.result == "success") {
+            window.localStorage.clear();
+            window.location.replace(data.redirect);
+          } else {
+            alert("error");
+          }
+        });
+    }
   }
 }
 

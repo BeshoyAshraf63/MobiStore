@@ -7,7 +7,7 @@ import { userAuthentication, adminAuthentication } from "./userHandler";
 const OrderHandler = (app:Application)=>{
     app.get("/orders/index",adminAuthentication,indexHandler);
     app.post("/orders/create",userAuthentication,createHandler);
-    app.get("/orders/update",updateHandler);
+    app.get("/orders/update",userAuthentication, updateHandler);
     app.delete("/orders/delete",adminAuthentication,deleteHandler);
     app.get("/orders/details",adminAuthentication,ordersProductsHandler);
     app.post("/orders/add_product",userAuthentication,addProductHandler);

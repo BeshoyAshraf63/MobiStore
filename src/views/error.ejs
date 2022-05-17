@@ -1,0 +1,27 @@
+<% 
+    const pageProps = {
+        title: "MobiStore - Checkout",
+        metaData: [
+            {
+                name: "description",
+                content: "Ecommerce website for selling mobiles, tablets and laptops"
+            }
+        ]
+    }
+%> 
+<%-include('./layout/head.ejs', {pageProps}) %>
+
+<div class="app">
+    <%-include('./components/nav.ejs', {activePage: "products", navClass: 'fixed', showCart: false}) %>
+    <div class="container pt-lg pb-5">
+        <h1 class="text-center mb-3">404</h1>
+        <h3 class="text-center mb-5">Page not found</h3>
+        <div class="text-center">
+            <a href="/" class="btn btn-outline-primary mb-5">Return to home page</a>
+        </div>
+
+    </div>
+    <%-include('./sections/footer.ejs') %>
+</div>
+
+<%-include('./layout/footer.ejs') %>

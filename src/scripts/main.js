@@ -7,6 +7,7 @@ const { TestimonialsSwiper } = require("./components/testimonialsSwiper");
 const { Cart } = require("./components/cart");
 const { Auth } = require("./components/auth");
 const { Contact } = require("./components/contact");
+const { Dashboard } = require("./components/dashboard");
 
 document.addEventListener("DOMContentLoaded", function () {
   new Nav();
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   new Cart();
   new Auth();
   new Contact();
+  new Dashboard();
 
   // init AOS
   AOS.init({
