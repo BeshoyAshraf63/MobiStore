@@ -127,7 +127,6 @@ const createHandler = async(req:Request,res:Response)=>{
 const updateHandler = async(req:Request,res:Response)=>{
     try
     {
-        
         const productName = req.body.updateProductName;
         const productDescription = req.body.updateProductDescription;
         const productPrice = Number(req.body.updateProductPrice);
