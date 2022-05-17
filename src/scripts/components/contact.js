@@ -16,6 +16,23 @@ class Contact {
     const email = this.contactForm.contactUsEmail.value;
     const subject = this.contactForm.contactUsSubject.value;
     const msg = this.contactForm.contactUsMsg.value;
+
+    if (
+      name == "" ||
+      phone == "" ||
+      email == "" ||
+      subject == "" ||
+      msg == ""
+    ) {
+      alert("Name, phone, email, subject and message can't be empty");
+      return;
+    }
+
+    if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      alert("Please enter a valid email format");
+      return;
+    }
+
     // const password = this.loginForm.loginPassword.value;
     const url = window.location.origin + "/contact";
     const data = {

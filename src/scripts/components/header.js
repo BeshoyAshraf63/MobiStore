@@ -33,7 +33,12 @@ class Header {
   }
 
   scrollToSection(link) {
-    const section = document.querySelector(link.getAttribute("href"));
+    let section;
+    if (link.search("#") == -1) {
+      section = document.querySelector("#home");
+    } else {
+      section = document.querySelector(link.getAttribute("href"));
+    }
     new SmoothScroll().animateScroll(section, null, {
       speed: 200,
       speedAsDuration: true,

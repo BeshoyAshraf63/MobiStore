@@ -194,7 +194,7 @@ class Nav {
     if (this.mobileMenuState == "opened") {
       this.toggleMobileMenu();
     }
-    if (link == null) {
+    if (link == null || link.getAttribute("href").search("#") == -1) {
       new SmoothScroll().animateScroll(document.body, null, {
         speed: 200,
         speedAsDuration: true,

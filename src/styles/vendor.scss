@@ -1,3 +1,5 @@
+/* purgecss start ignore */
+
 // required
 @import "../../node_modules/bootstrap/scss/functions";
 
@@ -22,8 +24,6 @@
 @import "../../node_modules/bootstrap/scss/tables";
 // @import "../../node_modules/bootstrap/scss/forms";
 @import "../../node_modules/bootstrap/scss/utilities/api";
-
-/* purgecss start ignore */
 
 // aos
 @import "../../node_modules/aos/src/sass/aos.scss";

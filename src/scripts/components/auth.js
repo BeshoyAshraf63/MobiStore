@@ -30,8 +30,14 @@ class Auth {
   }
 
   login() {
-    const username = this.loginForm.loginUsername.value;
-    const password = this.loginForm.loginPassword.value;
+    const username = this.loginForm.loginUsername.value.trim();
+    const password = this.loginForm.loginPassword.value.trim();
+
+    if (username == "" || password == "") {
+      alert("Username and password can't be empty");
+      return;
+    }
+
     const url = window.location.origin + "/users/login";
     const data = {
       userName: username,
@@ -49,19 +55,30 @@ class Auth {
         if (data.result == "success") {
           window.location.replace(window.location.origin + "/");
         } else {
-          alert("error");
+          alert("The username or password are incorrect");
         }
       });
   }
 
   signup() {
-    const firstName = this.signupForm.signupFirstname.value;
-    const lastName = this.signupForm.signupLastname.value;
-    const username = this.signupForm.signupUsername.value;
-    const password = this.signupForm.signupPassword.value;
+    const firstName = this.signupForm.signupFirstname.value.trim();
+    const lastName = this.signupForm.signupLastname.value.trim();
+    const username = this.signupForm.signupUsername.value.trim();
+    const password = this.signupForm.signupPassword.value.trim();
     const confirmPassword = this.signupForm.signupConfirmPassword.value;
     if (password !== confirmPassword) {
       alert("passwords don't match");
+      return;
+    }
+    if (
+      username.length < 4 ||
+      firstName.length < 4 ||
+      lastName.length < 4 ||
+      password.length < 4
+    ) {
+      alert(
+        "FirstName, username, lastname and password should be greater than 4 chars"
+      );
       return;
     }
     const url = window.location.origin + "/users/create";
@@ -81,9 +98,10 @@ class Auth {
       .then((response) => response.json())
       .then((data) => {
         if (data.result == "success") {
+          alert("your account is created successfully");
           window.location.replace(window.location.origin + "/");
         } else {
-          alert("error");
+          alert(data.result);
         }
       });
   }

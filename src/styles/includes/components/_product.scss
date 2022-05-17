@@ -25,6 +25,15 @@
   }
 }
 
+.product-item-wrapper {
+  &.hidden:not(.search-show) {
+    display: none;
+  }
+  &.search-hide {
+    display: none !important;
+  }
+}
+
 .new-products-swiper {
   padding: 30px 0;
   overflow: visible;

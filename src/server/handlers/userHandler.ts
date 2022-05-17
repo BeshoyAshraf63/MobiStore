@@ -31,7 +31,6 @@ const indexHandler = async(req:Request,res:Response)=>{
                 isAdmin: user.type == 2
             }
         })
-        console.log(users)
         res.render('dashboard/users', {users: users})
     }
     catch(err)

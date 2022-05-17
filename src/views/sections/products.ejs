@@ -2,14 +2,7 @@
     <div class="container">
         <h2 class="section-heading">Products</h2>
         <p class="section-sub-heading">Liked any product? Don't hesitate to call us</p>
-        <form class="d-flex justify-content-lg-end justify-content-center mb-5">
-            <div class="search-input-wrapper">
-                <input type="text" placeholder="Search for products" class="form-control search-input">
-                <button class="btn search-btn">
-                    <img src="/assets/imgs/home/search-icon.svg" alt="search" class="img-fluid">
-                </button>
-            </div>
-        </form>
+
         <div class="d-flex justify-content-between mb-lg-5 mb-4">
             <h3 class="mb-0">New Products</h3>
             <div class="new-products-swiper-controls">
@@ -37,13 +30,23 @@
 
             </div>
         </div>
-        <h3 class="mb-lg-5 mb-4 pt-5">All Products</h3>
+        <div class="d-flex flex-column flex-md-row justify-content-between pt-5 mb-5 align-items-center">
+            <h3 class="mb-4 mb-md-0">All Products</h3>
+            <div class="d-flex justify-content-lg-end justify-content-center">
+                <div class="search-input-wrapper">
+                    <input type="text" placeholder="Search all products" id="products-search" class="form-control search-input">
+                    <button class="btn search-btn">
+                        <img src="/assets/imgs/home/search-icon.svg" alt="search" class="img-fluid">
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <% for( let index = 0; index < products.length; index++ ) {
                     const product = products[index];
                 %>
-                <div class="col-12 col-sm-6 col-lg-4 mb-4">
-                    <div class="product-item <%= index > 9 ? 'hidden' : '' %>">
+                <div class="product-item-wrapper col-12 col-sm-6 col-lg-4 mb-4 <%= index > 0 ? 'hidden' : '' %>" data-id="<%= product.id %>">
+                    <div class="product-item">
                         <a href="/products/<%= product.id %>">
                             <img src="/assets/imgs/products/<%= product.img %>" alt="<%= product.name %>" class="img-fluid product-img">
                         </a>
@@ -55,8 +58,8 @@
             <% } %>
             
         </div>
-        <div class="text-center mt-5">
-            <a href="#" class="btn btn-primary px-5 d-block d-sm-inline-block">Load More</a>
+        <div class="text-center mt-5 load-more-btn-wrapper">
+            <a href="#" id="load-more-btn" class="btn btn-primary px-5 d-block d-sm-inline-block">Load More</a>
         </div>
     </div>
 </section>

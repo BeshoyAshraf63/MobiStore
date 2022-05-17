@@ -8,6 +8,7 @@ const { Cart } = require("./components/cart");
 const { Auth } = require("./components/auth");
 const { Contact } = require("./components/contact");
 const { Dashboard } = require("./components/dashboard");
+const { HomeProducts } = require("./components/homeProducts");
 
 document.addEventListener("DOMContentLoaded", function () {
   new Nav();
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   new Auth();
   new Contact();
   new Dashboard();
+  new HomeProducts();
 
   // init AOS
   AOS.init({
