@@ -14,7 +14,7 @@ class HomeProducts {
   }
 
   loadMore() {
-    $(".product-item-wrapper.hidden").slice(0, 1).removeClass("hidden");
+    $(".product-item-wrapper.hidden").slice(0, 3).removeClass("hidden");
     if ($(".product-item-wrapper.hidden").length == 0) {
       $(".load-more-btn-wrapper").addClass("d-none");
     }
