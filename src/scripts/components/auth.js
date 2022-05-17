@@ -26,6 +26,16 @@ class Auth {
     const userType = userTypeTemp.substring(5, userTypeTemp.search(";"));
     if (userType == 1) {
       $(".dashboard-link").remove();
+    } else if (userType == 2) {
+      if ($(".cart-popup").length) {
+        $(".cart-popup").remove();
+      }
+      if ($("#cart-menu-trigger").length) {
+        $("#cart-menu-trigger").remove();
+      }
+      if ($(".product-add-to-cart").length) {
+        $(".product-add-to-cart").remove();
+      }
     }
   }
 
